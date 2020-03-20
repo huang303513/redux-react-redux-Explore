@@ -1,2 +1,3 @@
-# redux-react-redux-Explore
-redux和react-redux原理
+## redux
+
+[【React系列】从零开始实现Redux](https://juejin.im/post/5d88200bf265da03c721dfb2)</br>
