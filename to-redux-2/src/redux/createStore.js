@@ -4,12 +4,12 @@ export default function createStore(reducer) {
 
     const getState = () => state;
 
-    const subscript = (listener) => {
+    const subscribe = (listener) => {
         listeners.push(listener);
-        const unsubscript = () => {
+        const unsubscribe = () => {
             listeners = listeners.filter((ln) => ln !== listener);
         }
-        return unsubscript;
+        return unsubscribe;
     }
 
     const dispatch = (action) => {
@@ -22,7 +22,7 @@ export default function createStore(reducer) {
 
     return {
         getState,
-        subscript,
+        subscribe,
         dispatch,
     };
 }

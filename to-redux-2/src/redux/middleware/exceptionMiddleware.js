@@ -1,7 +1,7 @@
 const exceptionMiddleware = ({dispatch, getState}) => next => action => {
     try {
+        console.log('exceptionMiddleware');
         return next(action);
-        console.warn('exceptionMiddleware');
     } catch (error) {
         console.warn(error);
     }
