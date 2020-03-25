@@ -8,8 +8,8 @@ import Pannel from './components/Pannel';
 function App() {
   return (
     <div className="App">
-      <Pannel />
       <Provider store={store}>
+        <Pannel />
         <Counter />
      </Provider>
    </div>

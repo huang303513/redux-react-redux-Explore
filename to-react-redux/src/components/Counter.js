@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "../redux";
-import store from "../store";
-import actions from "../store/actions/counter";
+import {add, minus} from "../store/actions/counter";
 import { connect } from "../react-redux";
-
-const bindCounter = bindActionCreators(actions, store.dispatch);
 
 class Counter extends Component {
   render() {
@@ -30,16 +26,16 @@ class Counter extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   number: state.counter.number
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, props) => ({
   add: num => {
-    dispatch(actions.add(num));
+    dispatch(add(num));
   },
   minus: num => {
-    dispatch(actions.minus(num));
+    dispatch(minus(num));
   }
 });
 

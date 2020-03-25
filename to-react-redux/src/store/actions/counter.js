@@ -15,6 +15,18 @@ const counter = {
   }
 };
 
-
-
 export default counter;
+
+export function add(number) {
+  return {
+    type: INCRENENT,
+    number
+  };
+}
+export function minus(number) {
+  return {
+    type: DECREMENT,
+    number
+  };
+}
+
