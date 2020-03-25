@@ -1,49 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { bindActionCreators } from "../redux";
 import store from '../store';
 import actions from '../store/actions/counter';
+import { connect } from '../react-redux';
 
 const bindCounter = bindActionCreators(actions, store.dispatch);
 
-export default class Counter extends Component {
-    constructor() {
-        super();
-        this.state = {
-            number: store.getState().counter.number
-        }
-    }
-    componentDidMount() {
-        this.unsub = store.subscribe(()=>{
-            this.setState({
-                number: store.getState().counter.number
-            })
-        })
-    }
+class Counter extends Component {
     render() {
         return (
             <div>
-                <button 
-                    className="counter"
-                    onClick={()=>{
-                        // store.dispatch(actions.add(2));
-                        bindCounter.add(2);
-                    }}
-                >
-                    +
-                </button>
-                <span>{this.state.number}</span>
-                <button 
-                    className="counter"
-                    onClick={()=>{
-                        bindCounter.minus(3);
-                    }}
-                >
-                    -
-                </button>
+                <p>{`number: ${this.props.number}`}</p>
+                <button onClick={() => { this.props.add(2) }}>+</button>
+                <button onClick={() => { this.props.minus(2) }}>-</button>
             </div>
         )
     }
-    componentWillUnmount() {
-        this.unsub();
-    }
 }
+
+const mapStateToProps = state => ({
+    number: state.counter.number
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    add: (num) => {
+        dispatch(actions.add(num))
+    },
+    minus: (num) => {
+        dispatch(actions.minus(num))
+    }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
